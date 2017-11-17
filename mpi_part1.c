@@ -20,7 +20,7 @@ int main (int argc, char *argv[])
    elapsed_time = -MPI_Wtime();
    MPI_Comm_rank(MPI_COMM_WORLD, &id);
    MPI_Comm_size(MPI_COMM_WORLD, &p);
-   if(argc != 2) {
+   if(argc != 3) {
       if (!id) printf("Command line: %s <m>\n", argv[0]);
       MPI_Finalize(); exit(1);
    }
@@ -65,9 +65,7 @@ int main (int argc, char *argv[])
    MPI_Reduce (&count, &global_count, 1, MPI_INT, MPI_SUM,0, MPI_COMM_WORLD);
    elapsed_time += MPI_Wtime();
    if (!id) {
-      printf ("%llu primes are less than or equal to %llu\n",
-         global_count, n);
-      printf ("Total elapsed time: %10.6f\n", elapsed_time);
+      printf ("Total number of primes=%llu, Execution Time=%10.6f, Total Nodes=%s \n",global_count, elapsed_time, argv[2]);
    }
    MPI_Finalize();
    return 0;
