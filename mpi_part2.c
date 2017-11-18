@@ -31,23 +31,24 @@ int main (int argc, char *argv[])
    }
    n = atoll(argv[1]);
   // node = atoi(argv[2]);
-   low_value_proc0 = 3;
-   high_value_proc0 = (unsigned long long int)sqrt(n);
-   size_proc0  = (high_value_proc0-low_value_proc0)/2+1;
-   proc0_size = (n-2)/(p*2);
    
    low_value = 3 + BLOCK_LOW(id,p,n-2) + BLOCK_LOW(id,p,n-2) % 2;
    high_value = 3 + BLOCK_HIGH(id,p,n-2) - BLOCK_HIGH(id,p,n-2) % 2;
    size = ( high_value - low_value)/2+1;
-   localmarked = (char *) malloc(proc0_size);
+   proc0_size = (n-2)/(p*2);
    
+   low_value_proc0 = 3;
+   high_value_proc0 = (unsigned long long int)sqrt(n);
+   size_proc0  = (high_value_proc0-low_value_proc0)/2+1; //Size of local sieving prime array for each process
+   localmarked = (char *) malloc(size_proc0);  
+   	
    if (localmarked == NULL) {
       printf ("Cannot allocate enough memory\n");
       MPI_Finalize();
       exit(1);
    }
    
-   for (i = 0; i < size; i++) {localmarked[i] = 0;}
+   for (i = 0; i < size_proc0; i++) {localmarked[i] = 0;}
 
    if ((3 + proc0_size) < (int) sqrt((double) n)) {
       if (!id) printf ("Too many processes\n");
@@ -95,7 +96,9 @@ int main (int argc, char *argv[])
    count = 0;
    for (i = 0; i < size; i++)
       if (!marked[i]) count++;
-   MPI_Reduce (&count, &global_count, 1, MPI_INT, MPI_SUM,0, MPI_COMM_WORLD);
+   if(p>1)
+   	MPI_Reduce (&count, &global_count, 1, MPI_INT, MPI_SUM,0, MPI_COMM_WORLD);
+   
    elapsed_time += MPI_Wtime();
    if (!id) {
 	global_count++;  
