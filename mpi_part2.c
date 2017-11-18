@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     unsigned long long int n,k,low_value, high_value, size, proc0_size,i,prime,first;
     char *marked;
     unsigned long long int global_count;
-    unsigned long long int localLow,localHigh,localSize,localFirst;
+    unsigned long long int localLowSieve,localHighSieve,localSizeSieve,localFirstSieve;
     char *localMarked;
     //variable declaration
 
@@ -40,10 +40,10 @@ int main(int argc, char *argv[])
     size = (high_value - low_value) / 2 + 1;
     proc0_size = ((n-2)/(2*p));
 
-    localLow = 3;
-    localHigh = 3 + BLOCK_HIGH(0,p,n-2) - BLOCK_HIGH(0,p,n-2) % 2;
-    localSize = (localHigh - localLow) / 2 + 1;
-    localMarked = (char*)malloc(localSize);
+    localLowSieve = 3;
+    localHighSieve = 3 + BLOCK_HIGH(0,p,n-2) - BLOCK_HIGH(0,p,n-2) % 2;
+    localSizeSieve = (localHighSieve - localLowSieve) / 2 + 1;
+    localMarked = (char*)malloc(localSizeSieve);
 
     if (localMarked == NULL) {
         printf("Cannot allocate memory to local array for seiving primes\n");
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    for(k=0;k<localSize;k++){
+    for(k=0;k<localSizeSieve;k++){
         localMarked[k] = 0;
     }
 
@@ -102,8 +102,8 @@ int main(int argc, char *argv[])
         //if(p>1)
             //MPI_Bcast(&prime,  1, MPI_INT, 0, MPI_COMM_WORLD);
         if(id){
-            localFirst = (prime * prime - localLow)/2;
-            for(k=localFirst;k<localSize;k+=prime){
+            localFirstSieve = (prime * prime - localLowSieve)/2;
+            for(k=localFirstSieve;k<localSizeSieve;k+=prime){
                 localMarked[k] = 1;
             }
             while(localMarked[++index]);
