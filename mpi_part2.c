@@ -98,8 +98,8 @@ int main (int argc, char *argv[])
    MPI_Reduce (&count, &global_count, 1, MPI_INT, MPI_SUM,0, MPI_COMM_WORLD);
    elapsed_time += MPI_Wtime();
    if (!id) {
-	global_count++;
-      printf ("Total Primes=%llu, Execution",global_count, n,elapsed_time);
+	global_count++;  
+      printf ("Total number of primes=%llu, Execution Time=%10.6f, Total Nodes=%s \n",global_count, elapsed_time, argv[2]);
    }
    MPI_Finalize();
    return 0;
