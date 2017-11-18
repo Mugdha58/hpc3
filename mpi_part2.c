@@ -32,8 +32,8 @@ int main (int argc, char *argv[])
    n = atoll(argv[1]);
   // node = atoi(argv[2]);
    low_value_proc0 = 3;
-   high_value_proc0 = 3 + BLOCK_HIGH(0,p,n-2)-(BLOCK_HIGH(0,p,n-2)%2);
-   size_proc0  = ((high_value_proc0-low_value_proc0)/2)+1;
+   high_value_proc0 = (unsigned long long int)sqrt(n);
+   size_proc0  = (high_value_proc0-low_value_proc0)/2+1;
    proc0_size = (n-2)/(p*2);
    
    low_value = 3 + BLOCK_LOW(id,p,n-2) + BLOCK_LOW(id,p,n-2) % 2;
@@ -72,25 +72,25 @@ int main (int argc, char *argv[])
 		first = 0;
 		}	
       else {
-         if ((low_value % prime)%2==0)
-                first = prime - (low_value % prime)/2;
-         else
-                first = (prime - (low_value % prime))/2;
-      }
-}
+         	if ((low_value % prime)%2==0)
+                	first = prime - (low_value % prime)/2;
+         	else
+                	first = (prime - (low_value % prime))/2;
+      		}
+	}
 
       for (i = first; i < size; i += prime) marked[i] = 1;
       if (!id) {
          while (marked[++index]);
          prime = 2*index+3;
       }
-if(id){
-first_proc0 = (prime*prime - low_value_proc0)/2;
-for(i=first_proc0;i<size_proc0;i+=prime)
-localmarked[i]=1;
-while(localmarked[++index]);
-prime=2*index+3;
-}
+	if(id){
+		first_proc0 = (prime*prime - low_value_proc0)/2;
+		for(i=first_proc0;i<size_proc0;i+=prime)
+		localmarked[i]=1;
+		while(localmarked[++index]);
+		prime=2*index+3;
+	}
 }while (prime * prime <= n);
    count = 0;
    for (i = 0; i < size; i++)
@@ -99,7 +99,7 @@ prime=2*index+3;
    elapsed_time += MPI_Wtime();
    if (!id) {
 	global_count++;
-      printf ("%llu primes are less than or equal to %llu :: Total elapsed time = %10.6f",global_count, n,elapsed_time);
+      printf ("Total Primes=%llu, Execution",global_count, n,elapsed_time);
    }
    MPI_Finalize();
    return 0;
