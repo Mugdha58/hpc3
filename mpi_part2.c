@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     proc0_size = ((n-2)/(2*p));
 
     localLowSieve = 3;
-    localHighSieve = 3 + BLOCK_HIGH(0,p,n-2) - BLOCK_HIGH(0,p,n-2) % 2;
+    localHighSieve = (unsigned long long int)sqrt(n);
     localSizeSieve = (localHighSieve - localLowSieve) / 2 + 1;
     localMarked = (char*)malloc(localSizeSieve);
 
