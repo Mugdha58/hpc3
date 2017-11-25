@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PBS_O_WORKDIR=/home/$USER/hpc3
+PBS_O_WORKDIR=/home/kaimo901/test/mpati008
 
 cd $PBS_O_WORKDIR
 
