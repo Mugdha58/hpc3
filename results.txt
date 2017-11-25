@@ -1,20 +1,20 @@
 PART1
 
-Total number of primes=455052511, Execution Time= 16.500441, Total Nodes=1 
-Total number of primes=455052511, Execution Time= 14.598423, Total Nodes=2 
-Total number of primes=455052511, Execution Time=  6.979057, Total Nodes=4 
-Total number of primes=455052511, Execution Time=  3.531265, Total Nodes=8 
+Total number of primes=455052511, Execution Time= 16.509155, Total Nodes=1 
+Total number of primes=455052511, Execution Time= 14.535158, Total Nodes=2 
+Total number of primes=455052511, Execution Time=  6.968456, Total Nodes=4 
+Total number of primes=455052511, Execution Time=  3.522795, Total Nodes=8 
 
 PART2
 
-Total number of primes: 455052511, Total time:  15.393545 sec, Total nodes: 1
-Total number of primes: 455052511, Total time:  13.684679 sec, Total nodes: 2
-Total number of primes: 455052511, Total time:   6.802057 sec, Total nodes: 4
-Total number of primes: 455052511, Total time:   3.321185 sec, Total nodes: 8
+Total number of primes: 455052511, Total time:  17.322794 sec, Total nodes: 1
+Total number of primes: 455052511, Total time:  13.666244 sec, Total nodes: 2
+Total number of primes: 455052511, Total time:   6.794101 sec, Total nodes: 4
+Total number of primes: 455052511, Total time:   3.338710 sec, Total nodes: 8
 
 PART3
 
-Total number of primes: 455052511, Total time:   7.555949 sec, number of nodes:1
-Total number of primes: 455052511, Total time:   3.839996 sec, number of nodes:2
-Total number of primes: 455052511, Total time:   1.905360 sec, number of nodes:4
-Total number of primes: 455052511, Total time:   1.481206 sec, number of nodes:8
+Total number of primes: 455052511, Total time:  11.629389 sec, number of nodes:1
+Total number of primes: 455052511, Total time:   3.776529 sec, number of nodes:2
+Total number of primes: 455052511, Total time:   2.853045 sec, number of nodes:4
+Total number of primes: 455052511, Total time:   1.005968 sec, number of nodes:8
